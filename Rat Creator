@@ -1,0 +1,50 @@
+import tkinter as tk
+import random
+
+# Simple Python script to scatter a lot of text in random spots on a graphical window
+# Uses tkinter for the GUI and random module for positioning and text selection
+
+# Create the main window
+root = tk.Tk()
+root.title("Random Text Scatter")
+root.geometry("800x600")  # Set initial window size
+root.configure(bg='white')  # White background for visibility
+
+# List of sample words/phrases to scatter (you can add more here!)
+text_phrases = [
+    "Hello!", "World", "Random", "Text", "Fun", "Code", "Python", "Scatter",
+    "Chaos", "Words", "Here", "And", "There", "Everywhere", "Dots", "Spots",
+    "Amazing", "Cool", "Wow", "Zap", "Boom", "Pixel", "Art", "Generate",
+    "Learning", "Play", "Create", "Experiment"
+]
+
+# Number of text elements to scatter (a lot!)
+num_texts = 100
+
+# Function to create and place a random text label
+def add_random_text():
+    # Pick a random phrase
+    phrase = random.choice(text_phrases)
+    
+    # Pick random position (x, y) within window bounds (with some padding)
+    x = random.randint(10, 790)  # Left-to-right
+    y = random.randint(10, 590)  # Top-to-bottom
+    
+    # Create a label with the text (random color for extra fun)
+    colors = ['red', 'blue', 'green', 'purple', 'orange', 'black', 'pink', 'brown']
+    color = random.choice(colors)
+    
+    label = tk.Label(root, text=phrase, fg=color, bg='white', font=('Arial', 12, 'bold'))
+    label.place(x=x, y=y)
+
+# Generate and place all the random texts
+for _ in range(num_texts):
+    add_random_text()
+
+# Add a title label at the top for context
+title_label = tk.Label(root, text="Random Text in Random Spots! Close the window to exit.", 
+                       fg='black', bg='white', font=('Arial', 16, 'bold'))
+title_label.pack(pady=5)  # Place it at the top
+
+# Run the GUI event loop (keeps the window open)
+root.mainloop()
